@@ -6,7 +6,7 @@
 /*   By: nlallema <nlallema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 00:09:58 by nlallema          #+#    #+#             */
-/*   Updated: 2025/11/08 15:41:33 by nlallema         ###   ########.fr       */
+/*   Updated: 2025/11/08 16:42:47 by nlallema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef enum e_vtype {
 }      t_vtype;
 
 # define RESET "\033[0m"
-# define RED "\033[31m"
+# define RED "\033[2;31m"
 # define GREEN "\033[2;32m"
 
 void	set_display(const char *, const char *);
