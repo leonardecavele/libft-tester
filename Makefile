@@ -4,6 +4,8 @@
 # 'make libft.a' to rebuild the libft.a
 # 'make clean' to delete .ev files
 # 'make fclean' to delete libft.a and .ev files
+# 'make m' to test only the mandatory part functions
+# 'make b' to test only the bonus part functions
 # 'make re' does 'make fclean' and 'make all'
 # 'make rb' to test bonus relink
 # 'make n' to test the norm
@@ -26,9 +28,11 @@ SRCS = tester.c
 # 'make' to test all functions at once
 all: $(BINARIES) $(BBINARIES)
 
-mandatory: $(BINARIES)
+# 'make m' to test only the mandatory part functions
+m: $(BINARIES)
 
-bonus: $(BBINARIES)
+# 'make b' to test only the bonus part functions
+b: $(BBINARIES)
 
 # 'make {function.ev}' to test a single function
 %.ev: $(TESTS_DIR)%.c libft.a .FORCE
