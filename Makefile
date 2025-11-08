@@ -4,15 +4,18 @@
 # 'make libft.a' to rebuild the libft.a
 # 'make clean' to delete .ev files
 # 'make fclean' to delete libft.a and .ev files
+# 'make m' to test only the mandatory part functions
+# 'make b' to test only the bonus part functions
 # 'make re' does 'make fclean' and 'make all'
 # 'make rb' to test bonus relink
 # 'make n' to test the norm
 # 'make r' to test mandatory relink
 
-.PHONY: .FORCE all clean r rb libft.a
+.PHONY: .FORCE all clean r rb libft.a bonus
+include list.mk
 
-TESTS = $(wildcard $(TESTS_DIR)*.c)
-BINARIES = $(TESTS:$(TESTS_DIR)%.c=%.ev)
+BINARIES = $(patsubst %.c,%.ev,$(TESTS))
+BBINARIES = $(patsubst %.c,%.ev,$(BTESTS)) 
 
 SHELL := /bin/bash
 CC = cc
@@ -23,7 +26,13 @@ wait := 0
 SRCS = tester.c
 
 # 'make' to test all functions at once
-all: $(BINARIES)
+all: $(BINARIES) $(BBINARIES)
+
+# 'make m' to test only the mandatory part functions
+m: $(BINARIES)
+
+# 'make b' to test only the bonus part functions
+b: $(BBINARIES)
 
 # 'make {function.ev}' to test a single function
 %.ev: $(TESTS_DIR)%.c libft.a .FORCE
