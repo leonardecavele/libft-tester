@@ -1,5 +1,4 @@
-# HOW TO USE :
-# 'make' to test all functions at once
+# HOW TO USE : # 'make' to test all functions at once
 # 'make {function.ev}' to test a single function
 # 'make libft.a' to rebuild the libft.a
 # 'make clean' to delete .ev files
@@ -7,30 +6,36 @@
 # 'make rb' to test bonus relink
 # 'make r' to test mandatory relink
 
-.PHONY: .FORCE all clean r rb
+.PHONY: .FORCE all clean r rb libft.a
+
+TESTS = $(wildcard $(TESTS_DIR)*.c)
+BINARIES = $(TESTS:$(TESTS_DIR)%.c=%.ev)
 
 SHELL := /bin/bash
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -L ../ -lft
 TESTS_DIR = tests/
-BINARIES = $(TESTS:$(TESTS_DIR)%.c=%.ev)
 LIB = ../libft.a
+wait := 0
 
 # 'make' to test all functions at once
 all: $(BINARIES)
 
 # 'make {function.ev}' to test a single function
 %.ev: $(TESTS_DIR)%.c $(LIB) .FORCE
-	@$(CC) $(CFLAGS) $< $(LIB) -o $@ 
+	@wait=$(wait) ; if [ "$$wait" -eq 1 ]; then printf \
+	"\033[0;31mPRESS ANY KEY\033[0m" ; read -n 1 -s ; echo ; \
+	fi ; $(eval wait:=1)
+	@$(CC) $(CFLAGS) $< $(LIB) -o $@
+	@printf "\033[0;31m|%s|\033[0m\n" $(subst .ev,.c,$@)
 	@./$@
-
-$(LIB): libft.a
 
 # 'make libft.a' to rebuild the libft.a
 libft.a:
+	@printf "\033[0;31mBUILDING 'libft.a'\033[0m"
 	@$(MAKE) fclean -C ../ --quiet
-	@$(MAKE)  -C ../ > /dev/null 2>&1
-	@$(MAKE) bonus -C ../ > /dev/null 2>&1 
+	@make $(LIB) --no-print-directory
+	@printf "\r\033[2K\r\033[0;31mDONE BUILDING 'libft.a'\033[0m\n"
 
 # 'make clean' to delete .ev files
 clean:
@@ -58,3 +63,7 @@ r:
 	@touch ../libft.h
 	@make $(BONUS_FLAG) -C ../ --no-print-directory
 	@make $(BONUS_FLAG) fclean -C ../ --no-print-directory > /dev/null 2>&1 
+
+$(LIB):
+	@$(MAKE)  -C ../ > /dev/null 2>&1
+	@$(MAKE) bonus -C ../ > /dev/null 2>&1 
