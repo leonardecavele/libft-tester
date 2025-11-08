@@ -14,17 +14,17 @@ all: $(BINARIES)
 
 # run make {name of function with '.ev' to test}
 %.ev: $(TESTS_DIR)%.c $(LIB) .FORCE
-	$(CC) $(CFLAGS) $< $(LIB) -o $@
-	./$@
+	@$(CC) $(CFLAGS) $< $(LIB) -o $@ 
+	@./$@
 
 # rebuild lib
 $(LIB):
-	$(MAKE) fclean -C ../
-	$(MAKE) $(BONUS_FLAG) -C ../
-	$(MAKE) bonus $(BONUS_FLAG) -C ../
+	$(MAKE) fclean -C ../ --quiet
+	$(MAKE) $(BONUS_FLAG) -C ../ --quiet
+	$(MAKE) bonus $(BONUS_FLAG) -C ../ --quiet
 
 clean:
-	rm -f *.ev
+	@rm -f *.ev
 
 rb:
 	@$(MAKE) BONUS_FLAG="bonus $(BONUS_FLAG)" r BONUS=1 --no-print-directory
