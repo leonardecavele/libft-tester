@@ -28,7 +28,7 @@ all: $(BINARIES)
 # 'make {function.ev}' to test a single function
 %.ev: $(TESTS_DIR)%.c libft.a .FORCE
 	@stty -echo
-	@wait=$(wait) ; if [ "$$wait" -eq 1 ]; then printf\
+	@wait=$(wait) ; if [ "$$wait" -eq 1 ]; then printf \
 	"\npress any key" ; read -n 1 -s ; printf "$(ERASE)" ;\
 	fi ; $(eval wait:=1)
 	@$(CC) $(CFLAGS) $< -o $@ $(SRCS) -L ../ -lft
