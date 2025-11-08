@@ -6,6 +6,7 @@
 # 'make fclean' to delete libft.a and .ev files
 # 'make re' does 'make fclean' and 'make all'
 # 'make rb' to test bonus relink
+# 'make n' to test the norm
 # 'make r' to test mandatory relink
 
 .PHONY: .FORCE all clean r rb libft.a
@@ -28,12 +29,17 @@ all: $(BINARIES)
 %.ev: $(TESTS_DIR)%.c libft.a .FORCE
 	@stty -echo
 	@wait=$(wait) ; if [ "$$wait" -eq 1 ]; then printf \
-	"\npress any key to continue.." ; read -n 1 -s ; printf "$(ERASE)" ; \
+	"\npress any key" ; read -n 1 -s ; printf "$(ERASE)" ; \
 	fi ; $(eval wait:=1)
 	@$(CC) $(CFLAGS) $< -o $@ $(SRCS) -L ../ -lft
 	@printf "|$(YELLOW_B)%s$(RESET)|\n" $(subst .ev,.c,$@)
 	@./$@
 	@stty echo
+
+# 'make n' to test the norm
+n: fclean
+	@printf "|$(YELLOW_B)NORM CHECK$(RESET)|\n"
+	@norminette -R CheckForbiddenSourceHeader ../^architectus
 
 # 'make libft.a' to rebuild the libft.a
 libft.a:
