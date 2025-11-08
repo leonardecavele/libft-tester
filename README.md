@@ -1,6 +1,6 @@
-# 🧪 Libft Tester — Custom Unit Cases
+# 👷‍♂️ Libft Tester — Custom Unit Cases
 
-## 🚀 Project Goal
+## 🏗️ Project Goal
 This repository contains a set of custom unit tests designed to verify the correct behavior of functions in the libft project.  
 The goal is to help ensure compliance and robustness of each function.
 
