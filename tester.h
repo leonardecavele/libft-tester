@@ -6,43 +6,31 @@
 /*   By: nlallema <nlallema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 00:09:58 by nlallema          #+#    #+#             */
-/*   Updated: 2025/11/09 11:14:52 by ldecavel         ###   ########.fr       */
+/*   Updated: 2025/11/09 15:06:43 by ldecavel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TESTER_H
 # define TESTER_H
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <stdint.h>
-# include <limits.h>
-# include <string.h>
-# include <stdbool.h>
-# include <ctype.h>
-# include <stdarg.h>
-# include <signal.h>
 # include "../libft.h"
 
-typedef enum e_vtype
+// colors
+# define RESET "\033[0m"
+# define RED "\033[31m"
+# define GREEN "\033[2;32m"
+
+typedef enum e_type
 {
 	INT,
 	SIZE_T,
 	CHAR,
 	STR
-}	t_vtype;
-
-# define RESET "\033[0m"
-# define RED "\033[31m"
-# define GREEN "\033[2;32m"
-
-void	segfault_handler(int code);
+}	t_type;
 
 void	display_description();
-
 void	set_display(const char *, const char *);
 void	set_description(const char *description);
-
-void	check_is_equal(t_vtype type, ...);
+void	check_is_equal(t_type type, ...);
 
 #endif
