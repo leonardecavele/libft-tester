@@ -6,7 +6,7 @@
 /*   By: ldecavel <ldecavel@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 18:17:09 by ldecavel          #+#    #+#             */
-/*   Updated: 2025/11/09 20:04:52 by ldecavel         ###   ########.fr       */
+/*   Updated: 2025/11/09 23:55:04 by ldecavel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,70 +47,70 @@ char	*strnstr(const char *haystack, const char *needle, size_t len)
 	return (0);
 }
 
-int	main(void)
+static char			*ft_res, *res;
+static const char	*haystack, *needle;
+static size_t		len;
+
+void    test1(void)
 {
-	char	*ft_res, *res;
-	int		status;
-	pid_t	pid;
-	const char *haystack, *needle;
-	size_t len;
-
-	// test 1
-	set_description("Basic match");
-	haystack = "Hello world"; needle = "world"; len = 11;
-	ft_res = ft_strnstr(haystack, needle, len); res = strnstr(haystack, needle, len);
-	check_is_equal(STR, ft_res, res);
-
-	// test 3
-	set_description("No match");
-	haystack = "abcdef"; needle = "xyz"; len = 6;
-	ft_res = ft_strnstr(haystack, needle, len); res = strnstr(haystack, needle, len);
-	check_is_equal(STR, ft_res, res);
-
-	// test 5
-	set_description("Empty needle");
-	haystack = "abcdef"; needle = ""; len = 6;
-	ft_res = ft_strnstr(haystack, needle, len); res = strnstr(haystack, needle, len);
-	check_is_equal(STR, ft_res, res);
-
-	// test 7
-	set_description("Needle longer than len");
-	haystack = "abcdef"; needle = "cde"; len = 2;
-	ft_res = ft_strnstr(haystack, needle, len); res = strnstr(haystack, needle, len);
-	check_is_equal(STR, ft_res, res);
-
-	// test 9
-	set_description("Empty haystack");
-	haystack = ""; needle = "a"; len = 5;
-	ft_res = ft_strnstr(haystack, needle, len); res = strnstr(haystack, needle, len);
-	check_is_equal(STR, ft_res, res);
-
-	// test 11
-	set_description("NULL haystack [segfault]");
-	haystack = NULL; needle = "abc"; len = 3;
-	pid = fork();
-	if (pid == 0)
-	{
-		(void)ft_strnstr(haystack, needle, len);
-		exit(0);
-	}
-	waitpid(pid, &status, 0);
-	if (WIFSIGNALED(status) && WTERMSIG(status) == SIGSEGV)
-		check_is_equal(STR, "Segfault", "Segfault");
-
-	// test 12
-	set_description("NULL needle [segfault]");
-	haystack = "abc"; needle = NULL; len = 3;
-	pid = fork();
-	if (pid == 0)
-	{
-		(void)ft_strnstr(haystack, needle, len);
-		exit(0);
-	}
-	waitpid(pid, &status, 0);
-	if (WIFSIGNALED(status) && WTERMSIG(status) == SIGSEGV)
-		check_is_equal(STR, "Segfault", "Segfault");
-
-	return (0);
+    set_description("Basic match");
+    haystack = "Hello world"; needle = "world"; len = 11;
+    ft_res = ft_strnstr(haystack, needle, len); res = strnstr(haystack, needle, len);
+    check_is_equal(STR, ft_res, res);
 }
 
+void    test2(void)
+{
+    set_description("No match");
+    haystack = "abcdef"; needle = "xyz"; len = 6;
+    ft_res = ft_strnstr(haystack, needle, len); res = strnstr(haystack, needle, len);
+    check_is_equal(STR, ft_res, res);
+}
+
+void    test3(void)
+{
+    set_description("Empty needle");
+    haystack = "abcdef"; needle = ""; len = 6;
+    ft_res = ft_strnstr(haystack, needle, len); res = strnstr(haystack, needle, len);
+    check_is_equal(STR, ft_res, res);
+}
+
+void    test4(void)
+{
+    set_description("Needle longer than len");
+    haystack = "abcdef"; needle = "cde"; len = 2;
+    ft_res = ft_strnstr(haystack, needle, len); res = strnstr(haystack, needle, len);
+    check_is_equal(STR, ft_res, res);
+}
+
+void    test5(void)
+{
+    set_description("Empty haystack");
+    haystack = ""; needle = "a"; len = 5;
+    ft_res = ft_strnstr(haystack, needle, len); res = strnstr(haystack, needle, len);
+    check_is_equal(STR, ft_res, res);
+}
+
+void    test6(void)
+{
+    haystack = NULL; needle = "abc"; len = 3;
+    (void)ft_strnstr(haystack, needle, len);
+}
+
+void    test7(void)
+{
+    haystack = "abc"; needle = NULL; len = 3;
+    (void)ft_strnstr(haystack, needle, len);
+}
+
+int main(void)
+{
+    handle(&test1);
+    handle(&test2);
+    handle(&test3);
+    handle(&test4);
+    handle(&test5);
+    handle_sigsegv("NULL haystack [segfault]", &test6, SEGFAULT);
+    handle_sigsegv("NULL needle [segfault]", &test7, SEGFAULT);
+    return (0);
+}
