@@ -6,7 +6,7 @@
 /*   By: nlallema <nlallema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 18:51:02 by nlallema          #+#    #+#             */
-/*   Updated: 2025/11/09 14:53:20 by ldecavel         ###   ########.fr       */
+/*   Updated: 2025/11/09 23:14:22 by ldecavel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ int	main(void)
 	// test 4
 	set_description("Test '<€>' from extended ascii is ascii");
 	c = 128;
-	check_is_equal(INT, ft_isascii(c), 1);
+	check_is_equal(INT, ft_isascii(c), 0);
 
 	// test 5
 	set_description("Test '<ÿ>' from extended ascii is ascii");
 	c = 255;
-	check_is_equal(INT, ft_isascii(c), 1);
+	check_is_equal(INT, ft_isascii(c), 0);
 
 
 	return (0);
