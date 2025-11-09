@@ -6,7 +6,7 @@
 /*   By: nlallema <nlallema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 00:09:58 by nlallema          #+#    #+#             */
-/*   Updated: 2025/11/09 22:21:01 by nlallema         ###   ########.fr       */
+/*   Updated: 2025/11/09 22:33:38 by nlallema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define TESTER_H
 
 # include "../libft.h"
+# include <stdbool.h>
 
 // colors
 # define RESET "\033[0m"

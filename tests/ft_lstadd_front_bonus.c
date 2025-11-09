@@ -6,11 +6,13 @@
 /*   By: nlallema <nlallema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 21:42:47 by nlallema          #+#    #+#             */
-/*   Updated: 2025/11/09 22:21:24 by nlallema         ###   ########.fr       */
+/*   Updated: 2025/11/09 22:39:19 by nlallema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "tester.h"
+
 
 void	test1(void)
 {

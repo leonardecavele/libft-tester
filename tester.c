@@ -6,7 +6,7 @@
 /*   By: nlallema <nlallema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 11:32:18 by nlallema          #+#    #+#             */
-/*   Updated: 2025/11/09 22:24:54 by nlallema         ###   ########.fr       */
+/*   Updated: 2025/11/09 22:33:49 by nlallema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include <stdint.h>
 #include <string.h>
 #include <limits.h>
-#include <stdbool.h>
 #include <ctype.h>
 #include <stdarg.h>
 #include <signal.h>
