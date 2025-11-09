@@ -19,7 +19,7 @@ YELLOW_B = \e[43m
 include list.mk
 
 %.test: $(OUT_DIR)%.test
-	@./$<
+	@true
 
 WAIT := 0
 # 'make' to test all functions at once
@@ -39,6 +39,7 @@ $(OUT_DIR)%.test: $(TESTS_DIR)%.c libft.a .FORCE
 	fi ; $(eval WAIT:=1)
 	@$(CC) $(CFLAGS) $< -o $@ $(SRCS) -L ../ -lft
 	@printf "|$(YELLOW_B)%s$(RESET)|\n" $(subst .test,.c,$@)
+	@./$@
 	@stty echo
 
 # 'make clean' to delete .test files
