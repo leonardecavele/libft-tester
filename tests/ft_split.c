@@ -6,17 +6,17 @@
 /*   By: ldecavel <ldecavel@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 23:00:55 by ldecavel          #+#    #+#             */
-/*   Updated: 2025/11/10 00:11:52 by ldecavel         ###   ########.fr       */
+/*   Updated: 2025/11/10 00:18:20 by ldecavel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tester.h"
 #include <stdlib.h>
 
+static char	**tab;
+
 void	test1(void)
 {
-	char	**tab;
-
 	set_description("Split a normal string with spaces.");
 	tab = ft_split("hello world 42", ' ');
 	check_is_equal(STR, tab[0], "hello");
@@ -31,8 +31,6 @@ void	test1(void)
 
 void	test2(void)
 {
-	char	**tab;
-
 	set_description("Split string with consecutive delimiters.");
 	tab = ft_split("a,,b,,,c", ',');
 	check_is_equal(STR, tab[0], "a");
@@ -47,8 +45,6 @@ void	test2(void)
 
 void	test3(void)
 {
-	char	**tab;
-
 	set_description("Split string without any delimiter present.");
 	tab = ft_split("abcdef", ',');
 	check_is_equal(STR, tab[0], "abcdef");
@@ -59,8 +55,6 @@ void	test3(void)
 
 void	test4(void)
 {
-	char	**tab;
-
 	set_description("Empty string should return an array with only NULL.");
 	tab = ft_split("", ',');
 	check_is_equal(PTR, tab[0], NULL);
