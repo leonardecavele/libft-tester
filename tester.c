@@ -6,7 +6,7 @@
 /*   By: nlallema <nlallema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 11:32:18 by nlallema          #+#    #+#             */
-/*   Updated: 2025/11/09 21:32:14 by nlallema         ###   ########.fr       */
+/*   Updated: 2025/11/09 22:24:54 by nlallema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@
 static char	*g_actual_name = "actual";
 static char	*g_expected_name = "expected";
 static char	*g_description = "";
-static int	g_counter = 1;
+static int	g_counter_main = 1;
+static int	g_counter_inproc = 1;
 
 static int	_run(void (*f)(void))
 {
@@ -83,12 +84,12 @@ static void	_log_result(t_type type, _Bool ok, ...)
 	display_description();
 	_print_line(g_actual_name, a, type, color);
 	_print_line(g_expected_name, b, type, color);
-	g_counter++;
+	g_counter_inproc++;
 }
 
 void	display_description()
 {
-	printf("\n─ %d ─ %s ⸺\n", g_counter, g_description);
+	printf("\n─ %d.%d ─ %s ⸺\n", g_counter_main, g_counter_inproc, g_description);
 }
 
 void	set_description(const char *description)
@@ -106,9 +107,11 @@ void	handle(void (*f)(void))
 {
 	int	status;
 
+	g_counter_inproc = 1;
 	status = _run(f);
 	if (status == SIGSEGV)
 		printf("%s∎%s |%sSegfault%s|\n", RED, RESET, RED, RESET);
+	g_counter_main++;
 }
 
 void	handle_sigsegv(const char *description, void (*f)(void), bool must_segfault)
@@ -117,11 +120,13 @@ void	handle_sigsegv(const char *description, void (*f)(void), bool must_segfault
 	char	*actual;
 	char	*expected;
 
+	g_counter_inproc = 1;
 	status = _run(f);
 	set_description(description);
 	actual = (status == SIGSEGV) ? "Segfault" : "No Segfault";
 	expected = (must_segfault) ? "Segfault" : "No Segfault";
 	check_is_equal(STR, actual, expected);
+	g_counter_main++;
 }
 
 void check_is_equal(t_type type, ...)
