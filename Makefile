@@ -7,6 +7,7 @@ OUT_DIR = bin/
 LIB = ../libft.a
 BINARIES = $(patsubst %.c,$(OUT_DIR)%.test,$(TESTS))
 BBINARIES = $(patsubst %.c,$(OUT_DIR)%.test,$(BTESTS)) 
+ERR_TRAP = trap 'stty echo; echo -e "\033[0;31m[Error]\033[0m"; exit 1' ERR
 # colors
 RESET = \033[0m
 RED = \033[0;31m
@@ -31,7 +32,8 @@ b: $(BBINARIES)
 $(OUT_DIR)%.test: $(TESTS_DIR)%.c libft.a .FORCE
 	@stty -echo
 	@mkdir -p $(OUT_DIR)
-	@WAIT=$(WAIT) ; if [ "$$WAIT" -eq 1 ]; then printf \
+	@$(ERR_TRAP); \
+	WAIT=$(WAIT) ; if [ "$$WAIT" -eq 1 ]; then printf \
 	"\npress any key" ; read -n 1 -s ; printf "$(ERASE)" ;\
 	fi ; $(eval WAIT:=1)
 	@$(CC) $(CFLAGS) $< -o $@ $(SRCS) -L ../ -lft
@@ -49,7 +51,8 @@ fclean: clean
 re: fclean all
 
 search:
-	@SORTED=$$(printf "%s\n" $(MUSTFILES) | sort);\
+	@$(ERR_TRAP); \
+	SORTED=$$(printf "%s\n" $(MUSTFILES) | sort);\
 	M=$$(comm -23 <(echo "$$SORTED") <(echo "$$LIST"));\
 	E=$$(comm -13 <(echo "$$SORTED") <(echo "$$LIST"));\
 	if [ -z "$$M" ] && [ -z "$$E" ]; then\
@@ -61,16 +64,19 @@ search:
 	true
 # 'make check' to check files
 check:
-	@LIST=$$(find ../ -maxdepth 1 -type f ! -name "*.o" ! -name "*_bonus*" ! -name "*.d" -printf "%f\n" | sort);\
+	@$(ERR_TRAP); \
+	LIST=$$(find ../ -maxdepth 1 -type f ! -name "*.o" ! -name "*_bonus*" ! -name "*.d" -printf "%f\n" | sort);\
 	$(MAKE) search LIST="$$LIST" --no-print-directory
 # 'make checkb' to check bonus files
 checkb:
-	@LIST=$$(find ../ -maxdepth 1 -type f ! -name "*.o" ! -name "*.d" -printf "%f\n" | sort);\
+	@$(ERR_TRAP); \
+	LIST=$$(find ../ -maxdepth 1 -type f ! -name "*.o" ! -name "*.d" -printf "%f\n" | sort);\
 	$(MAKE) search MUSTFILES="$(MUSTFILES) $(BTESTS)" LIST="$$LIST" --no-print-directory
 
 # 'make n' to test the norm
 n: fclean
-	@printf "|$(YELLOW_B)NORM CHECK$(RESET)|\n"
+	@$(ERR_TRAP); \
+	printf "|$(YELLOW_B)NORM CHECK$(RESET)|\n"
 	@find .. -maxdepth 1 -type f \( -name "*.c" -o -name "*.h" \) \
 	| xargs norminette -R CheckForbiddenSourceHeader
 
@@ -99,7 +105,8 @@ $(LIB):
 	@$(MAKE) bonus -C ../ > /dev/null 2>&1 
 # 'make libft.a' to rebuild the libft.a
 libft.a:
-	@if [ ! -f $(LIB) ]; then\
+	@$(ERR_TRAP); \
+	if [ ! -f $(LIB) ]; then\
 		stty -echo;\
 		printf "[$(RED)BUILDING$(RESET)] 'libft.a'$(RESET)";\
 		$(MAKE) fclean -C ../ --quiet ; make $(LIB) --no-print-directory ;\
