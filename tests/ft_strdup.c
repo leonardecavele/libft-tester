@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldecavel <ldecavel@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/09 18:07:54 by ldecavel          #+#    #+#             */
-/*   Updated: 2025/11/09 18:31:24 by ldecavel         ###   ########.fr       */
+/*   Created: 2025/11/09 18:24:25 by ldecavel          #+#    #+#             */
+/*   Updated: 2025/11/09 18:43:03 by ldecavel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,62 +15,45 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/wait.h>
+#include <string.h>
 
-char *strrchr(const char *s, int c);
+char *ft_strdup(const char *s1);
 
 int	main(void)
 {
-	char	*ft_res, *res, *s;
+	char	*ft_res, *res;
 	int		status;
 	pid_t	pid;
+	const char *s1;
 
 	// test 1
-	set_description("Basic match");
-	s = "Hello world";
-	ft_res = ft_strrchr(s, 'o'); res = strrchr(s, 'o');
+	set_description("Basic string");
+	s1 = "Hello world";
+	ft_res = ft_strdup(s1); res = strdup(s1);
 	check_is_equal(STR, ft_res, res);
+	free(ft_res); free(res);
 
 	// test 3
-	set_description("No match");
-	s = "abcdef";
-	ft_res = ft_strrchr(s, 'z'); res = strrchr(s, 'z');
+	set_description("Empty string");
+	s1 = "";
+	ft_res = ft_strdup(s1); res = strdup(s1);
 	check_is_equal(STR, ft_res, res);
+	free(ft_res); free(res);
 
 	// test 5
-	set_description("Match with first character");
-	s = "abc";
-	ft_res = ft_strrchr(s, 'a'); res = strrchr(s, 'a');
+	set_description("Special characters");
+	s1 = "abcdéf";
+	ft_res = ft_strdup(s1); res = strdup(s1);
 	check_is_equal(STR, ft_res, res);
+	free(ft_res); free(res);
 
 	// test 7
-	set_description("Match with last character");
-	s = "abcabc";
-	ft_res = ft_strrchr(s, 'c'); res = strrchr(s, 'c');
-	check_is_equal(STR, ft_res, res);
-
-	// test 9
-	set_description("Search for '\\0'");
-	s = "abc";
-	ft_res = ft_strrchr(s, '\0'); res = strrchr(s, '\0');
-	check_is_equal(STR, ft_res, res);
-
-	// test 10
-	set_description("Search for '\\0'");
-	check_is_equal(STR, ft_res, res);
-
-	// test 11
-	set_description("Empty string");
-	s = "";
-	ft_res = ft_strrchr(s, 'a'); res = strrchr(s, 'a');
-	check_is_equal(STR, ft_res, res);
-
-	// test 13
 	set_description("NULL pointer [segfault]");
-	s = NULL;
+	s1 = NULL;
 	pid = fork();
 	if (pid == 0)
 	{
-		(void)ft_strrchr(s, 'a');
+		(void)ft_strdup(s1);
 		exit(0);
 	}
 	waitpid(pid, &status, 0);

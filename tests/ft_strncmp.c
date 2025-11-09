@@ -6,7 +6,7 @@
 /*   By: ldecavel <ldecavel@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 18:11:08 by ldecavel          #+#    #+#             */
-/*   Updated: 2025/11/09 18:13:44 by ldecavel         ###   ########.fr       */
+/*   Updated: 2025/11/09 18:32:27 by ldecavel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,54 +27,34 @@ int	main(void)
 	size_t n;
 
 	// test 1
-	set_description("Basic equality [return value]");
+	set_description("Basic equality");
 	s1 = "Hello"; s2 = "Hello"; n = 5;
 	ft_res = ft_strncmp(s1, s2, n); res = strncmp(s1, s2, n);
 	check_is_equal(INT, ft_res, res);
 
-	// test 2
-	set_description("Basic equality [strings]");
-	check_is_equal(INT, ft_res, res);
-
 	// test 3
-	set_description("Different strings [return value]");
+	set_description("Different strings");
 	s1 = "Hello"; s2 = "Hella"; n = 5;
 	ft_res = ft_strncmp(s1, s2, n);	res = strncmp(s1, s2, n);
 	check_is_equal(INT, ft_res, res);
 
-	// test 4
-	set_description("Different strings [strings]");
-	check_is_equal(INT, ft_res, res);
-
 	// test 5
-	set_description("Size 0 should return 0 [return value]");
+	set_description("Size 0 should return 0");
 	s1 = "abc";	s2 = "xyz"; n = 0;
 	ft_res = ft_strncmp(s1, s2, n); res = strncmp(s1, s2, n);
 	check_is_equal(INT, ft_res, res);
 
-	// test 6
-	set_description("Size 0 should return 0 [strings]");
-	check_is_equal(INT, ft_res, res);
-
 	// test 7
-	set_description("s1 shorter than n [return value]");
+	set_description("s1 shorter than n");
 	s1 = "abc"; s2 = "abcdef"; n = 6;
 	ft_res = ft_strncmp(s1, s2, n);
 	res = strncmp(s1, s2, n);
 	check_is_equal(INT, ft_res, res);
 
-	// test 8
-	set_description("s1 shorter than n [strings]");
-	check_is_equal(INT, ft_res, res);
-
 	// test 9
-	set_description("Empty strings [return value]");
+	set_description("Empty strings");
 	s1 = ""; s2 = ""; n = 5;
 	ft_res = ft_strncmp(s1, s2, n); res = strncmp(s1, s2, n);
-	check_is_equal(INT, ft_res, res);
-
-	// test 10
-	set_description("Empty strings [strings]");
 	check_is_equal(INT, ft_res, res);
 
 	// test 11

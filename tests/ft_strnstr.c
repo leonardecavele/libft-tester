@@ -6,7 +6,7 @@
 /*   By: ldecavel <ldecavel@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 18:17:09 by ldecavel          #+#    #+#             */
-/*   Updated: 2025/11/09 18:23:12 by ldecavel         ###   ########.fr       */
+/*   Updated: 2025/11/09 18:33:22 by ldecavel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,53 +56,33 @@ int	main(void)
 	size_t len;
 
 	// test 1
-	set_description("Basic match [return value]");
+	set_description("Basic match");
 	haystack = "Hello world"; needle = "world"; len = 11;
 	ft_res = ft_strnstr(haystack, needle, len); res = strnstr(haystack, needle, len);
 	check_is_equal(STR, ft_res, res);
 
-	// test 2
-	set_description("Basic match [string]");
-	check_is_equal(STR, ft_res, res);
-
 	// test 3
-	set_description("No match [return value]");
+	set_description("No match");
 	haystack = "abcdef"; needle = "xyz"; len = 6;
 	ft_res = ft_strnstr(haystack, needle, len); res = strnstr(haystack, needle, len);
 	check_is_equal(STR, ft_res, res);
 
-	// test 4
-	set_description("No match [string]");
-	check_is_equal(STR, ft_res, res);
-
 	// test 5
-	set_description("Empty needle [return value]");
+	set_description("Empty needle");
 	haystack = "abcdef"; needle = ""; len = 6;
 	ft_res = ft_strnstr(haystack, needle, len); res = strnstr(haystack, needle, len);
 	check_is_equal(STR, ft_res, res);
 
-	// test 6
-	set_description("Empty needle [string]");
-	check_is_equal(STR, ft_res, res);
-
 	// test 7
-	set_description("Needle longer than len [return value]");
+	set_description("Needle longer than len");
 	haystack = "abcdef"; needle = "cde"; len = 2;
 	ft_res = ft_strnstr(haystack, needle, len); res = strnstr(haystack, needle, len);
 	check_is_equal(STR, ft_res, res);
 
-	// test 8
-	set_description("Needle longer than len [string]");
-	check_is_equal(STR, ft_res, res);
-
 	// test 9
-	set_description("Empty haystack [return value]");
+	set_description("Empty haystack");
 	haystack = ""; needle = "a"; len = 5;
 	ft_res = ft_strnstr(haystack, needle, len); res = strnstr(haystack, needle, len);
-	check_is_equal(STR, ft_res, res);
-
-	// test 10
-	set_description("Empty haystack [string]");
 	check_is_equal(STR, ft_res, res);
 
 	// test 11
