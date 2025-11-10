@@ -6,13 +6,14 @@
 /*   By: ldecavel <ldecavel@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 19:31:45 by ldecavel          #+#    #+#             */
-/*   Updated: 2025/11/10 01:15:49 by nlallema         ###   ########.fr       */
+/*   Updated: 2025/11/10 01:20:53 by ldecavel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tester.h"
 #include <unistd.h>
 #include <string.h>
+#include <stdlib.h>
 
 static int	pipefd[2], r;
 static char	buf[50];

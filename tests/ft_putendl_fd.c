@@ -6,13 +6,14 @@
 /*   By: ldecavel <ldecavel@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 19:27:16 by ldecavel          #+#    #+#             */
-/*   Updated: 2025/11/10 01:16:06 by nlallema         ###   ########.fr       */
+/*   Updated: 2025/11/10 01:20:46 by ldecavel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tester.h"
 #include <unistd.h>
 #include <string.h>
+#include <stdlib.h>
 
 void	test1(void)
 {
