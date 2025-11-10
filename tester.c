@@ -6,7 +6,7 @@
 /*   By: nlallema <nlallema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 11:32:18 by nlallema          #+#    #+#             */
-/*   Updated: 2025/11/09 22:33:49 by nlallema         ###   ########.fr       */
+/*   Updated: 2025/11/10 01:27:41 by nlallema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,11 @@ static void	_print_line(char *title, uint64_t res, t_type type, char *color)
 		case CHAR:
 			printf("%c", (int)res); break ;
 		case STR:
-			printf("%s", (char *)res); break ;
+			if (!*(char *)res)
+				printf("(empty)");
+			else
+				printf("%s", (char *)res);
+			break ;
 		case PTR:
 			printf("%p", (void *)res); break ;
 		default:
