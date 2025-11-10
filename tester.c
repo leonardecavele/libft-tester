@@ -6,7 +6,7 @@
 /*   By: nlallema <nlallema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 11:32:18 by nlallema          #+#    #+#             */
-/*   Updated: 2025/11/10 01:32:24 by nlallema         ###   ########.fr       */
+/*   Updated: 2025/11/10 09:35:21 by nlallema         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	_print_line(char *title, uint64_t res, t_type type, char *color)
 	printf("%s|\n", RESET);
 }
 
-static void	_log_result(t_type type, _Bool ok, ...)
+static void	_log_result(t_type type, int ok, ...)
 {
 	uint64_t	a, b;
 
