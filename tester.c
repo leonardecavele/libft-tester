@@ -6,7 +6,7 @@
 /*   By: nlallema <nlallema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 11:32:18 by nlallema          #+#    #+#             */
-/*   Updated: 2025/11/10 13:58:46 by nlallema         ###   ########lyon.fr   */
+/*   Updated: 2025/11/10 14:01:26 by nlallema         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static void	_log_result(t_type type, int ok, ...)
 	a = (uint64_t)va_arg(args, uint64_t);
 	b = (uint64_t)va_arg(args, uint64_t);
 	va_end(args);
-	display_description();
+	//display_description();
 	_print_line(g_actual_name, a, type, color);
 	_print_line(g_expected_name, b, type, color);
 	g_counter_inproc++;
@@ -98,6 +98,7 @@ void	display_description()
 void	set_description(const char *description)
 {
 	g_description = (char *)description;
+	display_description();
 }
 
 void	set_display(const char *actual_name, const char *expected_name)
