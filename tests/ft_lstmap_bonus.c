@@ -6,7 +6,7 @@
 /*   By: nlallema <nlallema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 23:52:42 by nlallema          #+#    #+#             */
-/*   Updated: 2025/11/10 12:54:47 by nlallema         ###   ########lyon.fr   */
+/*   Updated: 2025/11/10 13:51:21 by nlallema         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void test1(void)
 	set_description("Check original second node content was not modified");
     check_is_equal(STR, node2->content, "world");
 
-    ft_lstclear(&node1, _del);
-    ft_lstclear(&mapped, _del);
+    //ft_lstclear(&node1, _del);
+    //ft_lstclear(&mapped, _del);
 }
 
 void test2(void)
