@@ -6,7 +6,7 @@
 /*   By: nlallema <nlallema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 23:28:41 by nlallema          #+#    #+#             */
-/*   Updated: 2025/11/10 10:24:16 by ldecavel         ###   ########lyon.fr   */
+/*   Updated: 2025/11/10 12:50:07 by nlallema         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int main(void)
     handle_sigsegv("Clearing a single-node list should free it [no segfault]", &test2, NO_SEGFAULT);
     handle_sigsegv("Clearing multiple nodes should free all [no segfault]", &test3, NO_SEGFAULT);
     handle_sigsegv("Clearing a list with NULL content should not segfault [no segfault]", &test4, NO_SEGFAULT);
-    handle_sigsegv("Calling ft_lstclear with NULL pointer should not segfault [no segfault]", &test5, NO_SEGFAULT);
-    handle_sigsegv("Calling ft_lstclear with NULL del function should segfault [no segfault]", &test6, NO_SEGFAULT);
+    handle_sigsegv("Check NULL list [segfault]", &test5, SEGFAULT);
+    handle_sigsegv("Check NULL del function [segfault]", &test6, SEGFAULT);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: nlallema <nlallema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 23:52:42 by nlallema          #+#    #+#             */
-/*   Updated: 2025/11/10 10:18:04 by ldecavel         ###   ########lyon.fr   */
+/*   Updated: 2025/11/10 12:54:47 by nlallema         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,23 +81,15 @@ void test3(void)
 {
     node = ft_lstnew(strdup("abc"));
 
-    set_description("Calling with NULL function should segfault");
     ft_lstmap(node, NULL, _del);
 
     ft_lstclear(&node, _del);
-}
-
-void test4(void)
-{
-    node = ft_lstnew(strdup("abc"));
-    ft_lstmap(node, _to_upper, NULL);
 }
 
 int main(void)
 {
     handle(&test1);
     handle(&test2);
-    handle_sigsegv("Calling with NULL function pointer [no segfault]", &test3, NO_SEGFAULT);
-    handle_sigsegv("Calling with NULL del function [no segfault]", &test4, NO_SEGFAULT);
+    handle_sigsegv("Check NULL function [segfault]", &test3, SEGFAULT);
 	return (0);
 }

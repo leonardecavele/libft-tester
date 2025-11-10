@@ -6,7 +6,7 @@
 /*   By: ldecavel <ldecavel@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 18:56:41 by ldecavel          #+#    #+#             */
-/*   Updated: 2025/11/10 00:24:19 by ldecavel         ###   ########.fr       */
+/*   Updated: 2025/11/10 12:45:55 by nlallema         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,6 @@ int main(void)
 {
     handle(&test1);
     handle(&test2);
-    handle_sigsegv("NULL pointer test [segfault]", &test3, SEGFAULT);
+    handle_sigsegv("Check NULL dest and NULL src [no segfault]", &test3, NO_SEGFAULT);
     return (0);
 }
