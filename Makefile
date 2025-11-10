@@ -6,7 +6,7 @@
 #    By: ldecavel <ldecavel@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/09 17:42:42 by ldecavel          #+#    #+#              #
-#    Updated: 2025/11/09 17:42:43 by ldecavel         ###   ########.fr        #
+#    Updated: 2025/11/10 09:42:18 by nlallema         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ $(OUT_DIR)%.test: $(TESTS_DIR)%.c libft.a .FORCE
 	WAIT=$(WAIT) ; if [ "$$WAIT" -eq 1 ]; then printf \
 	"\npress any key" ; read -n 1 -s ; printf "$(ERASE)" ;\
 	fi ; $(eval WAIT:=1)
-	@$(CC) $(CFLAGS) $< -o $@ $(SRCS) -L ../ -lft
+	@$(CC) $(CFLAGS) $< -o $@ $(SRCS) -L ../ -lft -lbsd
 	@printf "|$(YELLOW_B)%s$(RESET)|\n" $(subst bin/,,$(subst .test,,$@))
 	@./$@
 	@stty echo
