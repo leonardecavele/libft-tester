@@ -6,23 +6,19 @@
 /*   By: ldecavel <ldecavel@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 19:23:31 by ldecavel          #+#    #+#             */
-/*   Updated: 2025/11/09 19:26:59 by ldecavel         ###   ########.fr       */
+/*   Updated: 2025/11/10 01:16:19 by nlallema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tester.h"
-#include <stdlib.h>
 #include <unistd.h>
-#include <signal.h>
-#include <sys/wait.h>
 #include <string.h>
 
-int main(void)
-{
-    int pipefd[2];
-    char buf[100];
+static int	pipefd[2];
+static char	buf[100];
 
-    // test 1
+void	test1(void)
+{
     set_description("Basic string"); 
     if (pipe(pipefd) == -1)
         exit(1);
@@ -31,6 +27,10 @@ int main(void)
     buf[5] = '\0';
     check_is_equal(STR, buf, "Hello");
     close(pipefd[0]); close(pipefd[1]);
+}
 
+int main(void)
+{
+	handle(&test1);
     return (0);
 }

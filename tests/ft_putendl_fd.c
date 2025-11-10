@@ -6,23 +6,19 @@
 /*   By: ldecavel <ldecavel@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 19:27:16 by ldecavel          #+#    #+#             */
-/*   Updated: 2025/11/09 19:30:31 by ldecavel         ###   ########.fr       */
+/*   Updated: 2025/11/10 01:16:06 by nlallema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tester.h"
-#include <stdlib.h>
 #include <unistd.h>
-#include <signal.h>
-#include <sys/wait.h>
 #include <string.h>
 
-int main(void)
+void	test1(void)
 {
-    int pipefd[2];
+	int pipefd[2];
     char buf[100];
 
-    // test 1
     set_description("Basic string"); 
     if (pipe(pipefd) == -1)
         exit(1);
@@ -36,6 +32,10 @@ int main(void)
 	}
     check_is_equal(STR, buf, "Hello\\n");
     close(pipefd[0]); close(pipefd[1]);
+}
 
+int main(void)
+{
+	handle(&test1);
     return (0);
 }
